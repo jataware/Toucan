@@ -1,5 +1,20 @@
 # Toucan
 
+## Docker usage
+After cloning the repo, you can simply use docker to run the Toucan model. 
+
+First run 
+```
+docker build . -t toucan-container:latest
+``` 
+which will build the container for you.
+
+Next run 
+``` 
+docker run -v {results directory location}:/codebase/Toucan/res/result toucan-container
+``` 
+ where the `{results directory location}` is replaced with a directory on your local machine you would like the model results written to.
+
 ## 1. Compiling DSSAT
 Amazon Linux 2:
 ```
