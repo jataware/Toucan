@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  toucan:
+    container_name: toucan-container
+    build: ./
+    volumes:
+      - $PWD/results:/codebase/Toucan/res/result
+      - $PWD/errors:/codebase/Toucan/res/.temp/error

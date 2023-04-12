@@ -1,9 +1,29 @@
 # Toucan
 
 ## Docker usage
-After cloning the repo, you can simply use docker to run the Toucan model. 
+After cloning the repo, you can use docker to run the Toucan model. 
 
-First run 
+In order to modify the runtime parameters like cultivars and runtime arguments, modify the `.../Toucan/docker-scripts/run_configuration.yaml` file. This file looks like
+```
+model_run_args: ETH 4 0
+cultivars:
+  - MZCER048.CUL.990003
+cultivar_directory: /codebase/Toucan/res/.csm/
+``` 
+
+Where the `model_run_args` are the commandline arguments passed to the Toucan model. The `cultivars` header starts a list of cultivars that may have any number of cultivars for the model run. Each cultivar is defined as the cultivar file name (ex. `MZCER048.CUL`) appended to the cultivar var number (ex. `990003`) by a period.
+
+Example of a bigger cultivar list:
+```
+model_run_args: ETH 4 0
+cultivars:
+  - MZCER048.CUL.990003
+  - MZCER048.CUL.990002
+  - VBGRO048.CUL.CC0001
+  ...
+```
+
+### First run 
 ```
 docker build . -t toucan-container:latest
 ``` 
@@ -11,9 +31,10 @@ which will build the container for you.
 
 Next run 
 ``` 
-docker run -v {results directory location}:/codebase/Toucan/res/result toucan-container
-``` 
- where the `{results directory location}` is replaced with a directory on your local machine you would like the model results written to.
+docker compose run toucan
+```
+
+This will place results files from the run in `.../Toucan/results` and will place error files in `.../Toucan/errors`
 
 ## 1. Compiling DSSAT
 Amazon Linux 2:

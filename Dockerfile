@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
       apt-utils \
       build-essential \
       cmake \
+      default-jre \
       gfortran \
       git \
       libssl-dev \
@@ -41,12 +42,8 @@ RUN cd /codebase/Toucan && \
       cd /codebase/Toucan/res/.temp && \
       mkdir summary multipleplanting flowering planting error
 
-# COPY ./cultivars/.csm /codebase/Toucan/res/.csm
-
 RUN pip install PyYAML
 
 WORKDIR /codebase/Toucan
 
-# ENTRYPOINT [ "java", "-cp", "target/ToucanSNX-1.0-SNAPSHOT.jar:lib/*", "org.cgiar.toucan.App" ]
-# CMD [ "ETH", "4" , "0" ]
 ENTRYPOINT [ "python3", "./docker-scripts/execute_model.py" ]

@@ -1,4 +1,4 @@
-model_run_args: USA 1 0
+model_run_args: ETH 4 0
 cultivars:
   - MZCER048.CUL.990003
 cultivar_directory: /codebase/Toucan/res/.csm/
